@@ -1,0 +1,31 @@
+# Ignorar archivos y directorios generados por Flask y el entorno virtual
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+#bd 
+db.py
+# Ignorar el entorno virtual (por ejemplo, creado con virtualenv o venv)
+
+venv/
+env/
+
+# Ignorar archivos y directorios específicos de Flask
+
+instance/
+*.log
+*.swp
+*.swo
+
+# Ignorar archivos de configuración de editor
+
+.vscode/
+.idea/
+*.sublime-*
+*.pycharm
+
+# Ignorar archivos y directorios generados por sistema operativo
+
+.DS_Store
+Thumbs.db

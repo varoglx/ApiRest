@@ -1,0 +1,6 @@
+pip install 
+flask_wtf,
+ pymysql,
+ Flask-migrate,
+ cryptography,
+ flask-bootstrap
