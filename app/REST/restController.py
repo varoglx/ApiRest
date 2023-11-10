@@ -85,5 +85,5 @@ def register():
         user.usuario = usuario
         user.contrasenna = contrasenna
         db.session.add(user)
-        db.session.commit
+        db.session.commit()
         return jsonify(True)
