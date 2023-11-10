@@ -75,6 +75,7 @@ def delete_usuario(index):
 def register():
     usuario = request.form.get('usuario')
     contrasenna = request.form.get('contrasena')
+    print("alo")
     print(usuario)
     print(contrasenna)
     if Usuarios.query.filter_by(username=usuario).first():#replicar para emailS
