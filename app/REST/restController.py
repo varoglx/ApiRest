@@ -71,3 +71,17 @@ def delete_usuario(index):
     else:
         return jsonify(False)
     
+@restBP.route('/registrar_usuario', methods=('GET', 'POST'))
+def register():
+    usuario = request.form.get('usuario')
+    contrasenna = request.form.get('contrasena')
+
+    if Usuarios.query.filter_by(username=usuario).first():#replicar para emailS
+        return jsonify(False)
+    else:
+        user=Usuarios()
+        user.usuario = usuario
+        user.contrasenna = contrasenna
+        db.session.add(user)
+        db.session.commit
+        return jsonify(True)
