@@ -89,3 +89,20 @@ def register():
         db.session.add(user)
         db.session.commit()
         return jsonify(True)
+
+@restBP.route('/login',methods=['POST','GET'])
+def login():
+    usuario = request.form.get('usuario')
+    contrasena = request.form.get('contrasena')
+    user = Usuarios.query.filter_by(username=usuario).first()  # Consulta si existe el usuario
+
+
+    if user:
+        if user.password == contrasena:  # Compara contraseñas directamente
+            return jsonify(True)
+        else:
+            return jsonify('Contraseña incorrecta')
+    else:
+        flash('Usuario no encontrado.', 'error')
+
+    return redirect(url_for('user.login'))
