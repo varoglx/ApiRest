@@ -1,11 +1,26 @@
 
-from flask import Blueprint, render_template, flash, redirect, jsonify, request, url_for
+from flask import Blueprint, render_template, flash, redirect, jsonify, request, url_for,Flask
 from app.db import db   
 from datetime import  timedelta
 import datetime
 from app import app  # Importa la variable app desde app/__init__.py
 from app.REST.models import Usuarios
 import json
+from flask_mail import Mail, Message
+
+app.config['MAIL_SERVER'] = "smtp.googlemail.com"
+
+app.config['MAIL_PORT'] = 587
+
+app.config['MAIL_USE_TLS'] = True
+
+app.config['MAIL_USERNAME'] = "alvaroglx25@gmail.com"
+
+app.config['MAIL_PASSWORD'] = "xtpl aeiq erwm opyt"
+
+mail = Mail(app)
+
+
 restBP = Blueprint('rest', __name__)
 
 @restBP.route('/get_data_usuarios', methods=['GET'])
@@ -98,6 +113,13 @@ def login():
 
     if user:
         if user.contrasenna == contrasena:  # Compara contraseñas directamente
+            msg_title = request.form.get('asunto')
+            correo = request.form.get('alv.castillo@duocuc.cl')
+            sender = "noreply@app.com"
+            msg = Message(msg_title, sender=sender, recipients=[str(correo)])
+            msg_body = "ola"
+            msg.body = 'registrado'
+            mail.send(msg)
             return jsonify(True)
         else:
             return jsonify('Contraseña incorrecta')
