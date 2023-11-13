@@ -90,6 +90,7 @@ def delete_usuario(index):
 def register():
     usuario = request.form.get('usuario')
     contrasenna = request.form.get('contrasena')
+    correo_elquerecibe = request.form.get('correo')
     print("alo")
     print(usuario)
     print(contrasenna)
@@ -104,11 +105,12 @@ def register():
         db.session.add(user)
         db.session.commit()
         msg_title = 'prueba123'
-        correo = 'alv.castillo@duocuc.cl'
+        correo = correo_elquerecibe
         sender = "noreply@app.com"
         msg = Message(msg_title, sender=sender, recipients=[str(correo)])
         msg_body = "ola"
         msg.body = 'registrado'
+        msg.html = render_template("correo/correo.html",usuario=usuario)
         mail.send(msg)
         return jsonify(True)
 
