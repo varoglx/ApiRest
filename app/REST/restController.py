@@ -94,7 +94,7 @@ def register():
 def login():
     usuario = request.form.get('usuario')
     contrasena = request.form.get('contrasena')
-    user = Usuarios.query.filter_by(username=usuario).first()  # Consulta si existe el usuario
+    user = Usuarios.query.filter_by(usuario=usuario).first()  # Consulta si existe el usuario
 
 
     if user:
