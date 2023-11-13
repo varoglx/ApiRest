@@ -96,13 +96,11 @@ def login():
     contrasena = request.form.get('contrasena')
     user = Usuarios.query.filter_by(usuario=usuario).first()  # Consulta si existe el usuario
 
-
     if user:
         if user.password == contrasena:  # Compara contraseñas directamente
             return jsonify(True)
         else:
             return jsonify('Contraseña incorrecta')
     else:
-        flash('Usuario no encontrado.', 'error')
+        return jsonify('Usuario no encontrado')
 
-    return redirect(url_for('user.login'))
