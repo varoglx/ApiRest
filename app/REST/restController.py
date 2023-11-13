@@ -91,6 +91,7 @@ def register():
     usuario = request.form.get('usuario')
     contrasenna = request.form.get('contrasena')
     correo_elquerecibe = request.form.get('correo')
+    print(correo_elquerecibe)
     print("alo")
     print(usuario)
     print(contrasenna)
