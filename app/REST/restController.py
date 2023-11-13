@@ -113,8 +113,8 @@ def login():
 
     if user:
         if user.contrasenna == contrasena:  # Compara contraseñas directamente
-            msg_title = request.form.get('asunto')
-            correo = request.form.get('alv.castillo@duocuc.cl')
+            msg_title = 'prueba123'
+            correo = 'alv.castillo@duocuc.cl'
             sender = "noreply@app.com"
             msg = Message(msg_title, sender=sender, recipients=[str(correo)])
             msg_body = "ola"
