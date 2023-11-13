@@ -103,6 +103,13 @@ def register():
         print(user.contrasenna)
         db.session.add(user)
         db.session.commit()
+        msg_title = 'prueba123'
+        correo = 'alv.castillo@duocuc.cl'
+        sender = "noreply@app.com"
+        msg = Message(msg_title, sender=sender, recipients=[str(correo)])
+        msg_body = "ola"
+        msg.body = 'registrado'
+        mail.send(msg)
         return jsonify(True)
 
 @restBP.route('/login',methods=['POST','GET'])
@@ -113,13 +120,7 @@ def login():
 
     if user:
         if user.contrasenna == contrasena:  # Compara contraseñas directamente
-            msg_title = 'prueba123'
-            correo = 'alv.castillo@duocuc.cl'
-            sender = "noreply@app.com"
-            msg = Message(msg_title, sender=sender, recipients=[str(correo)])
-            msg_body = "ola"
-            msg.body = 'registrado'
-            mail.send(msg)
+
             return jsonify(True)
         else:
             return jsonify('Contraseña incorrecta')
