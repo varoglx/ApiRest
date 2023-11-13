@@ -97,7 +97,7 @@ def login():
     user = Usuarios.query.filter_by(usuario=usuario).first()  # Consulta si existe el usuario
 
     if user:
-        if user.password == contrasena:  # Compara contraseñas directamente
+        if user.contrasenna == contrasena:  # Compara contraseñas directamente
             return jsonify(True)
         else:
             return jsonify('Contraseña incorrecta')
